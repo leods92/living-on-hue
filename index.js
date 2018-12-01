@@ -1,4 +1,5 @@
 const huejay = require('huejay')
+const inquirer = require('inquirer')
 
 const config = {
   offline: true,
@@ -26,6 +27,21 @@ function exitWithError(...errorMessages) {
   process.exit(1)
 }
 
+function confirm(message) {
+  return inquirer.prompt([{
+    type: 'confirm',
+    name: 'confirmation',
+    message
+  }])
+    .then(answers => {
+      if (answers.confirmation) {
+        return Promise.resolve()
+      }
+
+      exitWithError()
+    })
+}
+
 // This function is just for debugging purposes
 async function getLastExistentLight() {
   const lights = await client.lights.getAll()
@@ -34,18 +50,6 @@ async function getLastExistentLight() {
   console.log(`Using light "${light.name}"`)
 
   return light
-}
-
-function waitForUserInput() {
-  return new Promise((resolve) => {
-    process.stdin.setRawMode(true);
-    process.stdin.resume();
-    process.stdin.on('data', () => {
-      process.stdin.setRawMode(false);
-      process.stdin.resume();
-      resolve()
-    });
-  })
 }
 
 function discoverBridge () {
@@ -158,10 +162,9 @@ function showLightRegistrationInstructions() {
     `\n1. Put your LivingColors light close to your bridge`,
     `\n2. Make sure both your LivingColors light and bridge are on`,
     `\n3. Make sure you don't have any other (ZigBee, e.g. LivingColors, hue) lights and remotes near the bridge`,
-    `\n\nPress any key when you're ready.`,
   )
 
-  return waitForUserInput()
+  return confirm('Are you ready?')
 }
 
 async function registerLight() {
@@ -184,11 +187,10 @@ async function registerLight() {
 
 function testLight(light) {
   console.info(
-    `\nTo make sure we got the right light, we're gonna turn it off and on again.`,
-    `\nPress any key for us to do it...`
+    `\nTo make the connection to bridge works, we're gonna turn it off and on again.`
   )
 
-  return waitForUserInput()
+  return confirm('Continue?')
     .then(() => {
       light.on = false
       return client.lights.save(light)
@@ -198,6 +200,7 @@ function testLight(light) {
       light.on = true
       return client.lights.save(light)
     })
+    .then(() => confirm('Has the light gone off and on again?'))
     .then(() => {
       console.info(
         `\nIf the light went off and on, press any key to continue.`,

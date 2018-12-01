@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/leods92/living-on-hue#readme",
   "dependencies": {
-    "huejay": "^1.8.5"
+    "huejay": "^1.8.5",
+    "inquirer": "^6.2.1"
   }
 }
