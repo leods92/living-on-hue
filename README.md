@@ -17,7 +17,7 @@ So it should be safe to use.
 I've tested this with:
 - a Philips Hue Bridge 2.0 (the square one)
 - a Philips LivingColors Iris lamp 3rd generation (round remote with 1 rotation wheel, 2 scenario buttons and 1 on and 1 off button)
-this
+
 The outcome is that my LivingColors lamp can:
 - be controlled via the hue bridge (and of course the hue app)
 - be controlled via the remote it came with it
