@@ -197,12 +197,54 @@ function testLight(light) {
       return client.lights.save(light)
     })
     .then(() => confirm('Has the light gone off and on again?'))
+    .catch(exitWithError)
+}
+
+function showRemoteRegistrationInstructions() {
+  console.info(
+    `\nNow it's time to register your LivingColors remote, we'll use touchlink again.`,
+    `\n\nTo make sure we get this right:`,
+    `\n1. Make sure your LivingColors light is unplugged from the socket`,
+    `\n2. Make sure your bridge is on`,
+    `\n3. Make sure you don't have any other (ZigBee, e.g. LivingColors, hue) lights and remotes near the bridge`,
+    `\n4. Open the battery lid of your LivingColors remote and press and hold the reset button with a paper clip until you see an LED go on`,
+    `\n5. Hold your LivingColors remote close to your bridge`,
+    `\n6. *After* you say yes below, you have to start holding the remote I button`,
+  )
+
+  return confirm('Are you ready?')
+}
+
+function registerRemote() {
+  return showRemoteRegistrationInstructions()
+    .then(() => client.bridge.touchlink())
     .then(() => {
       console.info(
-        `\nIf the light went off and on, press any key to continue.`,
-        `\nOtherwise, something went wrong and you should close and reopen this script!`
+        `\nHold the remote I button for few seconds until it stops blinking.`,
       )
     })
+    .then(() => new Promise(resolve => setTimeout(resolve, 5000)))
+    .then(() => {
+      console.info(
+        `\nIf the remote LED blinked very fast at the end, it didn't work.`,
+        `\nOften it won't work on the first time.`,
+      )
+    })
+    .then(() => confirm('Has the remote LED blinked slowly at the end?'))
+    .then(() => {
+      console.info(
+        `\nNow plug in your LivingColors light again.`,
+        `\nPress and hold the I button close to the light until the light blinks and stops.`,
+      )
+    })
+    .then(() => confirm('Can you now control the light with the remote?'))
+    .then(() => {
+      console.info(
+        `\nJust to be sure, we're gonna test your light again.`
+      )
+    })
+    .then(testLight)
+}
     .catch(exitWithError)
 }
 
@@ -212,3 +254,4 @@ discoverBridge()
   .then(authenticate)
   .then(registerLight)
   .then(testLight)
+  .then(registerRemote)
