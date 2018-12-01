@@ -15,6 +15,12 @@ const config = {
 let client
 
 function exitWithError(...errorMessages) {
+  if (!errorMessages.length) {
+    errorMessages.push(
+      `Please restart this script and follow *all* the steps to be safe.`
+    )
+  }
+
   errorMessages.push('Aborting...')
   console.error(...errorMessages)
   process.exit(1)
