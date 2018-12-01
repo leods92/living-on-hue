@@ -7,7 +7,7 @@ Because there were many details I had to pay attention to be able to accomplish 
 ## Disclaimer
 
 I give no warranty.
-Use it at your own risk, if it damages your device it shouldn't.
+Use it at your own risk, if it damages your device it's your responsibility.
 
 This uses `huejay` which is a node library that ultimately uses the HTTP API provided by the Philips Hue bridges.
 So it should be safe to use.
