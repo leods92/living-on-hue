@@ -20,7 +20,7 @@ I've tested this with:
 
 The outcome is that my LivingColors lamp can:
 - be controlled via the hue bridge (and of course the hue app)
-- be controlled via the remote it came with it
+- and at the same time be controlled via the remote it came with it
 
 Test on Dec 1.
 
