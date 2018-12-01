@@ -22,6 +22,8 @@ The outcome is that my LivingColors lamp can:
 - be controlled via the hue bridge (and of course the hue app)
 - be controlled via the remote it came with it
 
+Test on Dec 1.
+
 ## How to install
 
 Prerequisites:
