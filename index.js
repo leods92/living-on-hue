@@ -239,7 +239,7 @@ function registerRemote() {
     .then(() => confirm('Has the remote LED blinked slowly at the end?'))
     .then(() => {
       console.info(
-        `\nNow plug in your LivingColors light again.`,
+        `\nNow plug in the socket your LivingColors light again.`,
         `\nPress and hold the I remote button close to the light until the light blinks and turns green.`,
         `\nThen release the I button.`,
       )
