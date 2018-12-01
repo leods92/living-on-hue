@@ -30,10 +30,10 @@ Prerequisites:
 - Node (js) (tested on Node 8)
 - A terminal app (tested it on Terminal.app for macOS running zsh)
 
-Download this repository into a file.
+Download this repository into a directory.
 
 To install, in your favorite shell console:
-- Change the directory to the repository
+- Change the directory to the repository directory on your machine
 - Run `npm install`
 
 ## How to run
