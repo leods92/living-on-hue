@@ -183,7 +183,7 @@ async function registerLight() {
 
 function testLight(light) {
   console.info(
-    `\nTo make the connection to bridge works, we're gonna turn it off and on again.`
+    `\nTo make sure the connection to bridge works, we're gonna turn it off and on again.`
   )
 
   return confirm('Continue?')
@@ -226,6 +226,7 @@ function registerRemote() {
     .then(() => new Promise(resolve => setTimeout(resolve, 5000)))
     .then(() => {
       console.info(
+        `\nThe remote LED should have blinked slow at the end.`,
         `\nIf the remote LED blinked very fast at the end, it didn't work.`,
         `\nOften it won't work on the first time.`,
       )
@@ -234,7 +235,8 @@ function registerRemote() {
     .then(() => {
       console.info(
         `\nNow plug in your LivingColors light again.`,
-        `\nPress and hold the I button close to the light until the light blinks and stops.`,
+        `\nPress and hold the I remote button close to the light until the light blinks and stops.`,
+        `\nThen release the I button.`,
       )
     })
     .then(() => confirm('Can you now control the light with the remote?'))
