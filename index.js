@@ -14,6 +14,7 @@ const config = {
   // username: ''
 }
 let client
+let light
 
 function exitWithError(...errorMessages) {
   if (!errorMessages.length) {
@@ -174,14 +175,15 @@ async function registerLight() {
       )
     })
     .then(getNewLight)
-    .then(light => {
+    .then(newLight => {
+      light = newLight
+
       console.info(`\nFound your light, its name is ${light.name}.`)
-      return light
     })
     .catch(exitWithError)
 }
 
-function testLight(light) {
+function testLight() {
   console.info(
     `\nTo make sure the connection to bridge works, we're gonna turn it off and on again.`
   )
