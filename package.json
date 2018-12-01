@@ -1,7 +1,7 @@
 {
   "name": "living-on-hue",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple Wizard script to guide you through the configuration of Philips LivingColors lamps and remotes with Philips Hue bridges.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

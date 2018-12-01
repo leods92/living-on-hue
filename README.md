@@ -1,6 +1,6 @@
 # living-on-hue
 
-This is a simple Wizard script to guide you through the configuration of Philips LivingColors lamps with Philips Hue bridges.
+This is a simple Wizard script to guide you through the configuration of Philips LivingColors lamps and remotes with Philips Hue bridges.
 
 Because there were many details I had to pay attention to be able to accomplish this, I decided to write this script.
 
