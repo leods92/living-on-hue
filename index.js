@@ -25,6 +25,7 @@ function exitWithError(...errorMessages) {
 
   errorMessages.push('Aborting...')
   console.error(...errorMessages)
+  cleanup()
   process.exit(1)
 }
 
@@ -45,12 +46,14 @@ function confirm(message) {
 
 // This function is just for debugging purposes
 async function getLastExistentLight() {
-  const lights = await client.lights.getAll()
-  const light = lights[lights.length - 1]
+  const lastLights = await client.lights.getAll()
+  const lastLight = lastLights[lastLights.length - 1]
+
+  light = lastLight
 
   console.log(`Using light "${light.name}"`)
 
-  return light
+  return Promise.resolve()
 }
 
 function discoverBridge () {
@@ -249,6 +252,9 @@ function registerRemote() {
     })
     .then(testLight)
 }
+
+function cleanup() {
+  client.users.delete(client.username)
     .catch(exitWithError)
 }
 
@@ -257,5 +263,8 @@ discoverBridge()
   .then(testConnection)
   .then(authenticate)
   .then(registerLight)
+  // The following line is just for debugging purposes
+  // .then(getLastExistentLight)
   .then(testLight)
   .then(registerRemote)
+  .then(cleanup)
