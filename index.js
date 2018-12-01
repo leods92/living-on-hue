@@ -77,7 +77,7 @@ function discoverBridge () {
 
       return bridges[0]
     })
-    .catch(error => console.error('Failed to discover a bridge; error: ', message))
+    .catch(error => console.error('Failed to discover a bridge; error: ', error))
 }
 
 function initClient(bridge) {
