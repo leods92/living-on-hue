@@ -139,13 +139,9 @@ function getNewLight() {
                 )
               }
 
-              if (lights.length > 1) {
-                exitWithError(
-                  `\nFound multiple new lights; this is weird...`,
-                )
-              }
-
-              resolve(lights[0])
+              // Returning the latest new night,
+              // just in case multiple were detected recently.
+              resolve(lights[lights.length - 1])
             })
             .catch(exitWithError)
         }, config.lightScanWaitingTime)
