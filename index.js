@@ -7,10 +7,10 @@ const config = {
   lightScanWaitingTime: 30 * 1000,
 
   // In case you want to skip bridge lookup
-  bridgeHost: '192.168.178.24',
+  // bridgeHost: '',
 
   // In case you want to reuse a bridge user
-  username: '9ZRqg3PpJgLJr-NGXycc5iKJlN95WtiD3wTBufem'
+  // username: ''
 }
 let client
 
