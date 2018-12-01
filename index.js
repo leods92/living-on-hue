@@ -253,8 +253,17 @@ function registerRemote() {
     .then(testLight)
 }
 
+function showEndingMessage() {
+  console.info(
+    `\nCongratulations!.`,
+    `\nYou can now control your LivingColors light with its remote and with your Hue bridge.`,
+  )
+
+  return Promise.resolve()
+}
+
 function cleanup() {
-  client.users.delete(client.username)
+  return client.users.delete(client.username)
     .catch(exitWithError)
 }
 
@@ -268,3 +277,4 @@ discoverBridge()
   .then(testLight)
   .then(registerRemote)
   .then(cleanup)
+  .then(showEndingMessage)
